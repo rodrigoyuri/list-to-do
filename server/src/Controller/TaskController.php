@@ -28,7 +28,9 @@ class TaskController extends AbstractController
      */
     public function show($id)
     {
+        $task = $this->getDoctrine()->getRepository(Task::class)->find($id);
 
+        return $this->json(compact('task'));
     }
 
     /**
