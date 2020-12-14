@@ -38,7 +38,19 @@ class TaskController extends AbstractController
      */
     public function create(Request $request)
     {
+        $data = $request->request->all();
+        
+        $task = new Task();
+        $task->setName($data['name']);
+        $task->setDescription($data['description']);
+        $task->setStatus(boolval($data['status']) ? true : false);
 
+        $manager = $this->getDoctrine()->getManager();
+
+        $manager->persist($task);
+        $manager->flush();
+
+        return $this->json(['message' => 'Tarefa cadastrada com sucesso!']);
     }
 
     /**
