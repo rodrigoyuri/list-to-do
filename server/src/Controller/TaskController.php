@@ -43,7 +43,7 @@ class TaskController extends AbstractController
         $task = new Task();
         $task->setName($data['name']);
         $task->setDescription($data['description']);
-        $task->setStatus(boolval($data['status']) ? true : false);
+        $task->setStatus($data['status']);
 
         $manager = $this->getDoctrine()->getManager();
 
