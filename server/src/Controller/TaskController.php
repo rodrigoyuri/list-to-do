@@ -87,6 +87,14 @@ class TaskController extends AbstractController
      */
     public function delete($id)
     {
+        $doctrine = $this->getDoctrine();
 
+        $task = $doctrine->getRepository(Task::class)->find($id);
+
+        $manager = $doctrine->getManager();
+        $manager->remove($task);
+        $manager->flush();
+
+        return $this->json(['Message' => 'Tarefa Removida com Sucesso!']);
     }
 }
