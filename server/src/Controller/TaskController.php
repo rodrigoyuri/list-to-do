@@ -20,7 +20,9 @@ class TaskController extends AbstractController
     {
         $tasks = $this->getDoctrine()->getRepository(Task::class)->findAll();
 
-        return $this->json(compact('tasks'));
+        // return $this->json(compact('tasks'));
+        
+        return $this->render('tasks/index.html.twig');
     }
 
     /**
