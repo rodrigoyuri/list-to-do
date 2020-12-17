@@ -13,7 +13,7 @@ import Vue from 'vue';
 const app = new Vue({
     el: '#app',
     data: {
-        message: 'Symfony com Vuejs!'
+        message: 'Symfony and Vuejs!'
     },
     delimiters: ['${', '}$']
 });
