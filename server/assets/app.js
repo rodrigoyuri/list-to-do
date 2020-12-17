@@ -10,6 +10,10 @@ import './styles/app.css';
 import Vue from 'vue';
 
 
+Vue.component('', {
+    
+});
+
 const app = new Vue({
     el: '#app',
     data: {
