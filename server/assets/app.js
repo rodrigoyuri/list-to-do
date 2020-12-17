@@ -10,9 +10,14 @@ import './styles/app.css';
 import Vue from 'vue';
 
 
-Vue.component('', {
-    
+Vue.component('nav-bar', {
+    template: '#navBar'
+})
+
+Vue.component('form-task', {
+    template: '#formTask'
 });
+
 
 const app = new Vue({
     el: '#app',
