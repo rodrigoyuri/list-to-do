@@ -7,6 +7,16 @@
 
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
+import Vue from 'vue';
+
+
+const app = new Vue({
+    el: '#app',
+    data: {
+        message: 'Symfony com Vuejs!'
+    },
+    delimiters: ['${', '}$']
+});
 
 // start the Stimulus application
 import './bootstrap';
