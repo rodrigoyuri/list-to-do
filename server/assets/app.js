@@ -8,7 +8,7 @@
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
 import Vue from 'vue';
-
+import axios from 'axios'
 
 Vue.component('nav-bar', {
     template: '#navBar'
@@ -24,7 +24,21 @@ const app = new Vue({
     data: {
         message: 'Symfony and Vuejs!'
     },
-    delimiters: ['${', '}$']
+
+    methods: {
+        getTasks: function () {
+            axios.get('/tasks/index')
+                .then(function(response) {
+                    console.log(response.data.tasks)
+                })
+                .catch(function(error) {
+                    console.log(error)
+                })                                                
+        }
+    },
+
+
+    delimiters: ['${', '}$'],
 });
 
 // start the Stimulus application
