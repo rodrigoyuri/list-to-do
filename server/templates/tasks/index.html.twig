@@ -13,15 +13,9 @@
         <nav-bar></nav-bar>
         <h1>${ message }$</h1>
         <form-task></form-task>
-    </div>
 
-    <template id="formTask">
-        <ul>
-            <li>Home</li>
-            <li>Sobre</li>
-            <li>Serviços</li>
-        </ul>
-    </template>
+        <button class="btn btn-success" @click.prevent.stop="getTasks()">GET TASKS</button>
+    </div>
 
     <template id="navBar">
         <nav class="navbar navbar-dark bg-dark">
@@ -29,7 +23,7 @@
             <ul class="nav d-flex justify-content-center" style="width: 100%">
                 <li class="nav-item">
                     <div class="container-fluid d-flex align-items-center">
-                        <a class="navbar-brand" href="#">
+                        <a class="navbar-brand" href="https://symfony.com">
                         <img 
                             src="https://symfony.com/logos/symfony_black_03.png" 
                             alt="" 
@@ -44,7 +38,7 @@
                 </li>
                 <li class="nav-item d-flex align-items-center">
                     <div class="container-fluid">
-                        <a class="navbar-brand" href="#">
+                        <a class="navbar-brand" href="https://vuejs.org">
                         <img 
                             src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/512px-Vue.js_Logo_2.svg.png" 
                             alt="" 
@@ -59,6 +53,14 @@
             </ul>
 
         </nav>
+    </template>
+
+    <template id="formTask">
+        <ul>
+            <li>Home</li>
+            <li>Sobre</li>
+            <li>Serviços</li>
+        </ul>
     </template>
 
 {% endblock %}
