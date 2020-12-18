@@ -11,10 +11,7 @@
 {% block body %}
     <div id="app">
         <nav-bar></nav-bar>
-        <h1>${ message }$</h1>
         <form-task></form-task>
-
-        <button class="btn btn-success" @click.prevent.stop="getTasks()">GET TASKS</button>
     </div>
 
     <template id="navBar">
@@ -56,11 +53,36 @@
     </template>
 
     <template id="formTask">
-        <ul>
-            <li>Home</li>
-            <li>Sobre</li>
-            <li>Serviços</li>
-        </ul>
+        
+        <div class="container mt-3">
+
+            <div class="row">
+                
+                <div class="col-4">
+                    <form>
+
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nome da Tarefa</label>
+                            <input type="text" class="form-control" id="name" aria-describedby="Nome">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Descrição</label>
+                            <input type="text" class="form-control" id="description">
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" class="btn btn-success">Cadastrar</button>
+                            <button type="submit" class="btn btn-danger">Cancelar</button>
+                        </div>
+                        
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+
     </template>
 
 {% endblock %}
