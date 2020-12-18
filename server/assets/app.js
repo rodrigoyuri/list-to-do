@@ -18,12 +18,21 @@ Vue.component('form-task', {
     template: '#formTask'
 });
 
+Vue.component('card-task', {
+    data() {
+        return {
+            name: 'Tarefa 1',
+            description: 'Tarefa 1 concluir até semana que vem.'
+        }
+    },
+    template: '#cardTask',
+    delimiters: ['${', '}$']
+});
+
 
 const app = new Vue({
     el: '#app',
-    data: {
-        message: 'Symfony and Vuejs!'
-    },
+    data: {},
 
     methods: {
         getTasks: function () {

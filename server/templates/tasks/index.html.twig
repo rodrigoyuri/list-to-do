@@ -10,8 +10,17 @@
 
 {% block body %}
     <div id="app">
-        <nav-bar></nav-bar>
-        <form-task></form-task>
+        <div>
+            <nav-bar></nav-bar>
+
+            <div class="container mt-3">
+                <div class="row justify-content-center">
+                    <form-task></form-task>
+                    <card-task></card-task>
+                </div>
+            </div>
+
+        </div>
     </div>
 
     <template id="navBar">
@@ -53,37 +62,55 @@
     </template>
 
     <template id="formTask">
-        
-        <div class="container mt-3">
 
-            <div class="row">
-                
-                <div class="col-4">
-                    <form>
-
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Nome da Tarefa</label>
-                            <input type="text" class="form-control" id="name" aria-describedby="Nome">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="description" class="form-label">Descrição</label>
-                            <input type="text" class="form-control" id="description">
-                        </div>
-
-                        <div class="d-flex justify-content-between">
-                            <button type="submit" class="btn btn-success">Cadastrar</button>
-                            <button type="submit" class="btn btn-danger">Cancelar</button>
-                        </div>
-                        
-                    </form>
+        <div class="col-4">
+            
+            <form>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Nome da Tarefa</label>
+                    <input type="text" class="form-control" id="name" aria-describedby="Nome">
                 </div>
 
-            </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Descrição</label>
+                    <input type="text" class="form-control" id="description">
+                </div>
 
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-success">Cadastrar</button>
+                    <button type="submit" class="btn btn-danger">Cancelar</button>
+                </div>                    
+            </form>
         </div>
 
     </template>
+
+    <template id="cardTask">
+        <div class="col-6 border-left">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">${ name }$</h5>
+                    <p class="card-text">${ description }$</p>
+                    <div class="d-flex justify-content-end">
+                        <a href="#" class="btn btn-primary mr-3">Editar</a>
+                        <a href="#" class="btn btn-danger">Remover</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mt-3">
+                <div class="card-body">
+                    <h5 class="card-title">${ name }$</h5>
+                    <p class="card-text">${ description }$</p>
+                    <div class="d-flex justify-content-end">
+                        <a href="#" class="btn btn-primary mr-3">Editar</a>
+                        <a href="#" class="btn btn-danger">Remover</a>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </template>
+
 
 {% endblock %}
 
