@@ -14,19 +14,25 @@ use Symfony\Component\Routing\Annotation\Route;
 class TaskController extends AbstractController
 {
     /**
-     * @Route("/", name="index", methods={"GET"})
+     * @Route("/", name="home", methods={"GET"})
+     */
+    public function home(): Response
+    {
+        return $this->render('tasks/index.html.twig');
+    }
+
+    /**
+     * @Route("/index", name="index", methods={"GET"})
      */
     public function index(): Response
     {
         $tasks = $this->getDoctrine()->getRepository(Task::class)->findAll();
 
-        // return $this->json(compact('tasks'));
-        
-        return $this->render('tasks/index.html.twig');
+        return $this->json(compact('tasks'));
     }
 
     /**
-     * @Route("/{id}", name="show", methods={"GET"})
+     * @Route("/show/{id}", name="show", methods={"GET"})
      */
     public function show($id)
     {
@@ -36,7 +42,7 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @Route("/", name="create", methods={"POST"})
+     * @Route("/create", name="create", methods={"POST"})
      */
     public function create(Request $request)
     {
@@ -56,7 +62,7 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="update", methods={"PUT", "PATCH"})
+     * @Route("/update/{id}", name="update", methods={"PUT", "PATCH"})
      */
     public function update(Request $request, $id)
     {
@@ -85,7 +91,7 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="delete", methods={"DELETE"})
+     * @Route("/delete/{id}", name="delete", methods={"DELETE"})
      */
     public function delete($id)
     {
