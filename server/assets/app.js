@@ -15,7 +15,26 @@ Vue.component('nav-bar', {
 })
 
 Vue.component('form-task', {
-    template: '#formTask'
+    template: '#formTask',
+
+    data() {
+        return {
+            task: {
+                name: '',
+                description: ''
+            }          
+        }
+    },
+
+    methods: {
+        saveTask(task) {
+            console.log(task);
+        },
+
+        resetForm() {
+            this.task = {};
+        }
+    }
 });
 
 Vue.component('card-task', {

@@ -68,17 +68,23 @@
             <form>
                 <div class="mb-3">
                     <label for="name" class="form-label">Nome da Tarefa</label>
-                    <input type="text" class="form-control" id="name" aria-describedby="Nome">
+                    <input type="text" class="form-control" id="name" v-model="task.name">
                 </div>
 
                 <div class="mb-3">
                     <label for="description" class="form-label">Descrição</label>
-                    <input type="text" class="form-control" id="description">
+                    <input type="text" class="form-control" id="description" v-model="task.description">
                 </div>
 
                 <div class="d-flex justify-content-between">
-                    <button type="submit" class="btn btn-success">Cadastrar</button>
-                    <button type="submit" class="btn btn-danger">Cancelar</button>
+                    <button 
+                        type="submit" 
+                        class="btn btn-success" 
+                        @click.prevent.stop="saveTask(task)">Cadastrar</button>
+                    <button 
+                        type="submit" 
+                        class="btn btn-danger" 
+                        @click.prevent.stop="resetForm()">Cancelar</button>
                 </div>                    
             </form>
         </div>
