@@ -24,9 +24,9 @@
     </div>
 
     <template id="navBar">
-        <nav class="navbar navbar-dark bg-dark">
+        <nav class="navbar navbar-light bg-light">
         
-            <ul class="nav d-flex justify-content-center" style="width: 100%">
+            <ul class="nav d-flex justify-content-between" style="width: 100%">
                 <li class="nav-item">
                     <div class="container-fluid d-flex align-items-center">
                         <a class="navbar-brand" href="https://symfony.com">
@@ -62,10 +62,14 @@
     </template>
 
     <template id="formTask">
-
+        
         <div class="col-4">
             
-            <form>
+            <div v-if="success.status"class="alert alert-success" role="alert">
+                ${success.message}$
+            </div>
+
+            <form enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="name" class="form-label">Nome da Tarefa</label>
                     <input type="text" class="form-control" id="name" v-model="task.name">

@@ -21,20 +21,37 @@ Vue.component('form-task', {
         return {
             task: {
                 name: '',
-                description: ''
+                description: '',
+                status: false
+            },
+            success: {
+                status: false,
+                message: ''
             }          
         }
     },
 
     methods: {
         saveTask(task) {
-            console.log(task);
+            const vueThis = this;
+            axios.post('/tasks/create', { task })
+                .then(function(response) {
+                    vueThis.success.status = true;
+                    vueThis.success.message = response.data.message;
+
+                    vueThis.resetForm();
+                })
+                .catch(function(error) {
+                    console.log(error);
+                })
         },
 
         resetForm() {
             this.task = {};
         }
-    }
+    },
+
+    delimiters: ['${', '}$']
 });
 
 Vue.component('card-task', {
@@ -51,20 +68,6 @@ Vue.component('card-task', {
 
 const app = new Vue({
     el: '#app',
-    data: {},
-
-    methods: {
-        getTasks: function () {
-            axios.get('/tasks/index')
-                .then(function(response) {
-                    console.log(response.data.tasks)
-                })
-                .catch(function(error) {
-                    console.log(error)
-                })                                                
-        }
-    },
-
 
     delimiters: ['${', '}$'],
 });
