@@ -55,13 +55,28 @@ Vue.component('form-task', {
 });
 
 Vue.component('card-task', {
+    template: '#cardTask',
+
     data() {
         return {
-            name: 'Tarefa 1',
-            description: 'Tarefa 1 concluir até semana que vem.'
+           tasks:  {
+               name: '',
+               description: ''
+           }
         }
     },
-    template: '#cardTask',
+
+    created: function() {
+        const thisVue = this;
+        axios.get('/tasks/index')
+            .then(function(response) {
+                thisVue.tasks = response.data.tasks;
+            })
+            .catch(function(error) {
+                console.log("Erro ${error}");
+            })
+    },
+
     delimiters: ['${', '}$']
 });
 

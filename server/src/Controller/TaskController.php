@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class TaskController extends AbstractController
 {
     /**
-     * @Route("/", name="home", methods={"GET"})
+     * @Route("/", name="home")
      */
     public function home(): Response
     {
