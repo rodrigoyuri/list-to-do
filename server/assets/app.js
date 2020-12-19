@@ -27,8 +27,18 @@ Vue.component('form-task', {
             success: {
                 status: false,
                 message: ''
-            }          
+            },
+            isEdit: false          
         }
+    },
+
+    created() {
+        const thisVue = this;
+
+        eventBus.$on('updateTask', function(task) {
+            thisVue.task = task;
+            thisVue.isEdit = true;
+        });
     },
 
     methods: {
@@ -59,10 +69,10 @@ Vue.component('card-task', {
 
     data() {
         return {
-           tasks:  {
-               name: '',
-               description: ''
-           }
+           tasks: [
+               {name: ''},
+               {description: ''}                
+           ]
         }
     },
 
@@ -77,9 +87,16 @@ Vue.component('card-task', {
             })
     },
 
+    methods: {
+        updateTask(task) {
+            eventBus.$emit('updateTask', task);
+        }
+    },
+
     delimiters: ['${', '}$']
 });
 
+const eventBus = new Vue();
 
 const app = new Vue({
     el: '#app',
