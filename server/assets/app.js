@@ -57,6 +57,7 @@ Vue.component('form-task', {
         },
 
         resetForm() {
+            this.isEdit = false;
             this.task = {};
         }
     },
