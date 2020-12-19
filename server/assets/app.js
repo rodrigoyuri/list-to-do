@@ -35,7 +35,7 @@ Vue.component('form-task', {
     created() {
         const thisVue = this;
 
-        eventBus.$on('updateTask', function(task) {
+        eventBus.$on('editTask', function(task) {
             thisVue.task = task;
             thisVue.isEdit = true;
         });
@@ -45,6 +45,20 @@ Vue.component('form-task', {
         saveTask(task) {
             const vueThis = this;
             axios.post('/tasks/create', { task })
+                .then(function(response) {
+                    vueThis.success.status = true;
+                    vueThis.success.message = response.data.message;
+
+                    vueThis.resetForm();
+                })
+                .catch(function(error) {
+                    console.log(error);
+                })
+        },
+
+        updateTask(task) {
+            const vueThis = this;
+            axios.put(`/tasks/update/${task.id}`, {task})
                 .then(function(response) {
                     vueThis.success.status = true;
                     vueThis.success.message = response.data.message;
@@ -84,13 +98,13 @@ Vue.component('card-task', {
                 thisVue.tasks = response.data.tasks;
             })
             .catch(function(error) {
-                console.log("Erro ${error}");
+                console.log(`Erro ${error}`);
             })
     },
 
     methods: {
-        updateTask(task) {
-            eventBus.$emit('updateTask', task);
+        editTask(task) {
+            eventBus.$emit('editTask', task);
         }
     },
 

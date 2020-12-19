@@ -89,7 +89,7 @@
                     <button 
                         type="submit" 
                         class="btn btn-primary" 
-                        @click.prevent.stop="saveTask(task)"
+                        @click.prevent.stop="updateTask(task)"
                         v-if="isEdit">Atualizar</button>
                     <button 
                         type="submit" 
@@ -110,7 +110,7 @@
                     <div class="d-flex justify-content-end">
                         <a 
                             href="#" 
-                            class="btn btn-primary mr-3" @click.prevent.stop="updateTask(task)">Editar</a>
+                            class="btn btn-primary mr-3" @click.prevent.stop="editTask(task)">Editar</a>
                         <a href="#" class="btn btn-danger">Remover</a>
                     </div>
                 </div>

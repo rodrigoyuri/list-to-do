@@ -66,28 +66,28 @@ class TaskController extends AbstractController
      */
     public function update(Request $request, $id)
     {
-        $data = $request->request->all();
+        $data = json_decode($request->getContent());
 
         $doctrine = $this->getDoctrine();
 
-        $task = $doctrine->getRepository(Task::class)->find($id);
+        $task = $doctrine->getRepository(Task::class)->find($data->task->id);
 
-        if($request->request->has('name')) {
-            $task->setName($data['name']);
+        if($data->task->name) {
+            $task->setName($data->task->name);
         }
 
-        if($request->request->has('description')) {
-            $task->setDescription($data['description']);
+        if($data->task->description) {
+            $task->setDescription($data->task->description);
         }
 
-        if($request->request->has('status')) {
-            $task->setStatus($data['status']);
+        if($data->task->status) {
+            $task->setStatus($data->task->status);
         }
 
         $manager = $doctrine->getManager();
         $manager->flush();
 
-        return $this->json(['Message' => 'Tarefa Atualizado com Sucesso!']);
+        return $this->json(['message' => 'Tarefa Atualizado com Sucesso!']);
     }
 
     /**
