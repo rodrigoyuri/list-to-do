@@ -97,14 +97,7 @@ Vue.component('card-task', {
     },
 
     created: function() {
-        const thisVue = this;
-        axios.get('/tasks/index')
-            .then(function(response) {
-                thisVue.tasks = response.data.tasks;
-            })
-            .catch(function(error) {
-                console.log(`Erro ${error}`);
-            })
+        this.getTasks();
     },
 
     methods: {
@@ -113,12 +106,28 @@ Vue.component('card-task', {
         },
 
         removeTask(taskId) {
+            const thisVue = this;
+
             axios.delete(`/tasks/delete/${taskId}`)
                 .then(function(response) {
                     eventBus.$emit('removeTask', response);
+                    
+                    thisVue.getTasks();
                 })
                 .catch(function(error) {
                     console.log(error);
+                })
+        },
+
+        getTasks() {
+            const thisVue = this;
+
+            axios.get('/tasks/index')
+                .then(function(response) {
+                    thisVue.tasks = response.data.tasks;
+                })
+                .catch(function(error) {
+                    console.log(`Erro ${error}`);
                 })
         }
     },
