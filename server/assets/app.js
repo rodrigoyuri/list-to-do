@@ -93,8 +93,9 @@ Vue.component('card-task', {
         return {
            tasks: [
                {name: ''},
-               {description: ''}
-           ]
+               {description: ''},
+           ],
+           hasTasks: false,
         }
     },
 
@@ -132,6 +133,13 @@ Vue.component('card-task', {
 
             axios.get('/tasks/index')
                 .then(function(response) {
+                    
+                    thisVue.hasTasks = false;
+
+                    if(response.data.tasks.length) {
+                        thisVue.hasTasks = true;
+                    }
+                    
                     thisVue.tasks = response.data.tasks;
                 })
                 .catch(function(error) {

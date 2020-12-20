@@ -103,6 +103,7 @@
 
     <template id="cardTask">
         <div class="col-6 border-left">
+            <div class="alert alert-warning" v-if="!hasTasks">Nenhuma Tarefa Cadastrada</div>
             <div class="card mb-3" v-for="(task, index) in tasks" :key="task.id">
                 <div class="card-body">
                     <h5 class="card-title">${ task.name }$</h5>
