@@ -55,6 +55,8 @@ Vue.component('form-task', {
                     vueThis.success.message = response.data.message;
 
                     vueThis.resetForm();
+
+                    eventBus.$emit('saveTask');
                 })
                 .catch(function(error) {
                     console.log(error);
@@ -97,7 +99,13 @@ Vue.component('card-task', {
     },
 
     created: function() {
-        this.getTasks();
+        const thisVue = this;
+        
+        thisVue.getTasks();
+
+        eventBus.$on('saveTask', function() {
+            thisVue.getTasks();
+        });
     },
 
     methods: {
