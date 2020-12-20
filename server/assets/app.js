@@ -28,7 +28,7 @@ Vue.component('form-task', {
                 status: false,
                 message: ''
             },
-            isEdit: false          
+            isEdit: false
         }
     },
 
@@ -38,6 +38,11 @@ Vue.component('form-task', {
         eventBus.$on('editTask', function(task) {
             thisVue.task = task;
             thisVue.isEdit = true;
+        });
+
+        eventBus.$on('removeTask', function(response) {
+            thisVue.success.status = true;
+            thisVue.success.message = response.data.message;
         });
     },
 
@@ -86,7 +91,7 @@ Vue.component('card-task', {
         return {
            tasks: [
                {name: ''},
-               {description: ''}                
+               {description: ''}
            ]
         }
     },
@@ -105,6 +110,16 @@ Vue.component('card-task', {
     methods: {
         editTask(task) {
             eventBus.$emit('editTask', task);
+        },
+
+        removeTask(taskId) {
+            axios.delete(`/tasks/delete/${taskId}`)
+                .then(function(response) {
+                    eventBus.$emit('removeTask', response);
+                })
+                .catch(function(error) {
+                    console.log(error);
+                })
         }
     },
 

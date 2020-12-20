@@ -103,6 +103,6 @@ class TaskController extends AbstractController
         $manager->remove($task);
         $manager->flush();
 
-        return $this->json(['Message' => 'Tarefa Removida com Sucesso!']);
+        return $this->json(['message' => 'Tarefa Removida com Sucesso!']);
     }
 }
