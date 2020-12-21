@@ -6,8 +6,8 @@
                 <h5 class="card-title">Card title</h5>
                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                 <div class="d-flex justify-content-end">
-                    <button class="btn btn-primary mr-3">Editar</button>
-                    <button class="btn btn-danger">Excluir</button>
+                    <button class="btn btn-primary mr-3">Editar <font-awesome-icon icon="edit" /></button>
+                    <button class="btn btn-danger">Excluir <font-awesome-icon icon="trash" /></button>
                 </div>
             </div>
         </div>
