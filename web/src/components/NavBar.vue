@@ -16,8 +16,22 @@ export default {
     data() {
         return {
             titles: [
-                {name: 'Symfony', uriLogo: 'https://symfony.com/logos/symfony_black_03.png'},
-                {name: 'Vuejs', uriLogo: 'https://vuejs.org/images/logo.png'},
+                {
+                    name: 'Symfony', 
+                    uriLogo: 'https://symfony.com/logos/symfony_black_03.png'
+                },
+                {
+                    name: 'Visualizar Tarefas', 
+                    uriLogo: 'https://icon2.cleanpng.com/20171220/kfw/eye-png-5a3ab98a7ef4f8.49353656151379802652.jpg'
+                },
+                {
+                    name: 'Cadastro de Tarefas', 
+                    uriLogo: 'https://cdn.onlinewebfonts.com/svg/img_349207.png'
+                },
+                {
+                    name: 'Vuejs', 
+                    uriLogo: 'https://vuejs.org/images/logo.png'
+                },
             ]
         }
     },
