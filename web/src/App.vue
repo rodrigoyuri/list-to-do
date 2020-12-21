@@ -1,19 +1,19 @@
 <template>
   <div id="app">
-    <NavBar></NavBar>
-    <FormTask></FormTask>
+    <nav-bar></nav-bar>
+    <card-task></card-task>
   </div>
 </template>
 
 <script>
 import NavBar from './components/NavBar';
-import FormTask from './components/FormTask';
+import CardTask from './components/CardTask'
 
 export default {
   name: 'App',
   components: {
     NavBar,
-    FormTask
+    CardTask
   }
 }
 </script>
