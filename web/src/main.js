@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue.esm';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faPlus, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faEdit, faTrash, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 import App from './App.vue'
@@ -13,7 +13,7 @@ Vue.config.productionTip = false;
 
 Vue.use(BootstrapVue);
 
-library.add(faPlus, faEdit, faTrash);
+library.add(faPlus, faEdit, faTrash, faCheck);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 new Vue({
