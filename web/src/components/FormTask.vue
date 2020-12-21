@@ -26,7 +26,9 @@
 
                 <div class="d-flex justify-content-between mb-3">
                     <button class="btn btn-success">Confirmar</button>
-                    <button class="btn btn-danger">Cancelar</button>
+                    <button 
+                        class="btn btn-danger"
+                        @click.prevent="cancelRegister()">Cancelar</button>
                 </div>
 
             </div>
@@ -35,8 +37,14 @@
 </template>
 
 <script>
+import EventBus from '../event-bus';
+
 export default {
-    
+    methods: {
+        cancelRegister() {
+            EventBus.$emit('cancelRegister');
+        }
+    }
 }
 </script>
 
