@@ -1,27 +1,23 @@
 <template>
   <div id="app">
+    <NavBar></NavBar>
     <FormTask></FormTask>
   </div>
 </template>
 
 <script>
-import FormTask from './components/FormTask'
+import NavBar from './components/NavBar';
+import FormTask from './components/FormTask';
 
 export default {
   name: 'App',
   components: {
+    NavBar,
     FormTask
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
