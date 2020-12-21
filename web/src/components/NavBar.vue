@@ -9,12 +9,18 @@
             </div>
         </nav>
         <div class="d-flex justify-content-end mr-3 mt-3">
-            <button class="btn btn-outline-success btn-lg"><font-awesome-icon icon="plus" /></button>
+            <button 
+                class="btn btn-outline-success btn-lg"
+                v-if="showButtonAdd"
+                @click.prevent="showForm()"><font-awesome-icon icon="plus" /></button>
         </div>
     </div>
 </template>
 
 <script>
+
+import EventBus from '../event-bus';
+
 export default {
     data() {
         return {
@@ -27,9 +33,25 @@ export default {
                     name: 'Vuejs', 
                     uriLogo: 'https://vuejs.org/images/logo.png'
                 },
-            ]
+            ],
+            showButtonAdd: true
         }
     },
+
+    created: function() {
+        const thisVue = this;
+
+        EventBus.$on('cancelRegister', function() {
+            thisVue.showButtonAdd = true;
+        })
+    },
+
+    methods: {
+        showForm() {
+            this.showButtonAdd = false;
+            EventBus.$emit('showForm');
+        }
+    }
 }
 </script>
 
