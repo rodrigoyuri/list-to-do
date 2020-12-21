@@ -8,6 +8,9 @@
                 </a>
             </div>
         </nav>
+        <div class="d-flex justify-content-end mr-3 mt-3">
+            <button class="btn btn-outline-success btn-lg"><font-awesome-icon icon="plus" /></button>
+        </div>
     </div>
 </template>
 
@@ -19,14 +22,6 @@ export default {
                 {
                     name: 'Symfony', 
                     uriLogo: 'https://symfony.com/logos/symfony_black_03.png'
-                },
-                {
-                    name: 'Visualizar Tarefas', 
-                    uriLogo: 'https://icon2.cleanpng.com/20171220/kfw/eye-png-5a3ab98a7ef4f8.49353656151379802652.jpg'
-                },
-                {
-                    name: 'Cadastro de Tarefas', 
-                    uriLogo: 'https://cdn.onlinewebfonts.com/svg/img_349207.png'
                 },
                 {
                     name: 'Vuejs', 
