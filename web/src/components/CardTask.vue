@@ -15,7 +15,9 @@
                     <h5 class="card-title">{{task.name}}</h5>
                     <p class="card-text">{{task.description}}</p>
                     <div class="d-flex justify-content-end">
-                        <button class="btn btn-primary mr-3">Editar <font-awesome-icon icon="edit" /></button>
+                        <button 
+                            class="btn btn-primary mr-3"
+                            @click.prevent="editTask(task)">Editar <font-awesome-icon icon="edit" /></button>
                         <button 
                             class="btn btn-danger"
                             @click.prevent="removeTask(task.id)">Excluir <font-awesome-icon icon="trash" /></button>
@@ -28,6 +30,7 @@
 
 <script>
 import axios from 'axios';
+import EventBus from '../event-bus';
 
 export default {
     data() {
@@ -60,6 +63,10 @@ export default {
             .catch((error) => {
                 console.log(error)
             })
+        },
+
+        editTask(task) {
+            EventBus.$emit('editTask', task);
         },
 
         removeTask(taskId) {
