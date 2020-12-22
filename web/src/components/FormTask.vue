@@ -61,7 +61,7 @@ export default {
             task: {
                 name: '',
                 description: '',
-                status: 0
+                status: false
             },
             response: {
                 message: String,
@@ -123,7 +123,9 @@ export default {
 
         resetForm() {
             this.showButton = false;
-            this.task = {};
+            this.task.name = '';
+            this.task.description = '';
+            this.task.status = false;
         }
     }
 }
