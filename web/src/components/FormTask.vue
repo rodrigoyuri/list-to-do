@@ -1,9 +1,11 @@
 <template>
     <div>
         <div class="row mt-3 d-flex justify-content-center">
-            
             <div class="col-4 border rounded">
-                <h3>Cadastre suas Tarefa</h3>
+                <div 
+                    class="alert alert-success mt-3"
+                    v-if="response.status">{{response.message}}</div>
+                <h3 class="mt-3">Cadastre suas Tarefa</h3>
                 <form enctype="multipart/form-data">
                     <div class="mb-3">
                         <label 
@@ -53,15 +55,22 @@ export default {
                 name: '',
                 description: '',
                 status: false
+            },
+            response: {
+                message: String,
+                status: false
             }
         }
     },
 
     methods: {
         saveTask(task) {
+            const thisVue = this;
+
             axios.post('http://127.0.0.1:8000/tasks/create', task)
                 .then((response) => {
-                    console.log(response);
+                    thisVue.response.message = response.data.message;
+                    thisVue.response.status = true;
                 })
                 .catch((error) => {
                     console.log(error)
