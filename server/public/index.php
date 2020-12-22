@@ -1,5 +1,4 @@
 <?php
-header('Access-Control-Allow-Origin: http://localhost:8080');
 
 use App\Kernel;
 use Symfony\Component\Dotenv\Dotenv;
