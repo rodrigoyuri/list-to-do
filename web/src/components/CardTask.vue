@@ -31,7 +31,6 @@ export default {
         return {
             tasks: [
                 {
-                    id: Number,
                     name: String,
                     description: String,
                     status: Boolean,
