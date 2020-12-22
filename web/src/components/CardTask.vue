@@ -1,29 +1,44 @@
 <template>
     <div class="row d-flex justify-content-center">
         <div class="col-6">
-            <div class="alert alert-success" v-if="response.status">{{response.message}}</div>
-            <div class="alert alert-warning" v-if="!tasks.length">Nenhum Tarefa Encontrada.</div>
-            <div class="card mb-3" v-for="(task, index) in tasks" :key="index">
-                <div class="card-header d-flex justify-content-end">
-                    <div>
-                        Marcar como concluida 
-                        <button 
-                            class="btn btn-outline-success"
-                            @click.prevent="checkTask(tasks, task)">
-                            <font-awesome-icon icon="check" />
-                        </button>
-                    </div>
+
+            <div 
+                class="alert alert-success" 
+                v-if="response.status">{{response.message}}</div>
+            <div 
+                class="alert alert-warning" 
+                v-if="!tasks.length">Nenhum Tarefa Encontrada.</div>
+            
+            <div v-if="statusRequision">
+                <div class="d-flex align-items-center">
+                    <strong>Loading...</strong>
+                    <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
                 </div>
-                <div class="card-body">
-                    <h5 class="card-title">{{task.name}}</h5>
-                    <p class="card-text">{{task.description}}</p>
-                    <div class="d-flex justify-content-end">
-                        <button 
-                            class="btn btn-primary mr-3"
-                            @click.prevent="editTask(task)">Editar <font-awesome-icon icon="edit" /></button>
-                        <button 
-                            class="btn btn-danger"
-                            @click.prevent="removeTask(task.id)">Excluir <font-awesome-icon icon="trash" /></button>
+            </div>
+
+            <div v-if="!statusRequision">
+                <div class="card mb-3" v-for="(task, index) in tasks" :key="index">
+                    <div class="card-header d-flex justify-content-end">
+                        <div>
+                            Marcar como concluida 
+                            <button 
+                                class="btn btn-outline-success"
+                                @click.prevent="checkTask(tasks, task)">
+                                <font-awesome-icon icon="check" />
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{task.name}}</h5>
+                        <p class="card-text">{{task.description}}</p>
+                        <div class="d-flex justify-content-end">
+                            <button 
+                                class="btn btn-primary mr-3"
+                                @click.prevent="editTask(task)">Editar <font-awesome-icon icon="edit" /></button>
+                            <button 
+                                class="btn btn-danger"
+                                @click.prevent="removeTask(task.id)">Excluir <font-awesome-icon icon="trash" /></button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -49,7 +64,8 @@ export default {
             response: {
                 message: String,
                 status: false
-            }
+            },
+            statusRequision: false,
         }
     },
 
@@ -59,11 +75,21 @@ export default {
 
     methods: {
         getTasks() {
+            const thisVue = this;
+
+            thisVue.statusRequision = true;
+
             axios.get('http://localhost:8000/tasks/index')
             .then((response) => {
-                this.tasks = response.data.tasks.filter(function(el) {
-                    return el.status != true;
-                });        
+                if(response.data) {
+                    this.tasks = response.data.tasks.filter(function(el) {
+                        return el.status != true;
+                    });
+
+                    this.statusRequision = false;
+                }
+                
+                this.statusRequision = false;
             })
             .catch((error) => {
                 console.log(error)
