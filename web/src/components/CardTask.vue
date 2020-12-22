@@ -2,7 +2,8 @@
     <div class="row d-flex justify-content-center">
         <div class="col-6">
             <div class="alert alert-success" v-if="response.status">{{response.message}}</div>
-            <div class="card mb-3"  v-for="(task, index) in tasks" :key="index">
+            <div class="alert alert-warning" v-if="!tasks.length">Nenhum Tarefa Encontrada.</div>
+            <div class="card mb-3" v-for="(task, index) in tasks" :key="index">
                 <div class="card-header d-flex justify-content-end">
                     <div>
                         Marcar como concluida 
