@@ -47,11 +47,11 @@ class TaskController extends AbstractController
     public function create(Request $request)
     {
         $data = json_decode($request->getContent());
-        
+
         $task = new Task();
-        $task->setName($data->task->name);
-        $task->setDescription($data->task->description);
-        $task->setStatus($data->task->status);
+        $task->setName($data->name);
+        $task->setDescription($data->description);
+        $task->setStatus($data->status);
 
         $manager = $this->getDoctrine()->getManager();
 
