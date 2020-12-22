@@ -7,7 +7,9 @@
                 <div class="card-header d-flex justify-content-end">
                     <div>
                         Marcar como concluida 
-                        <button class="btn btn-outline-success">
+                        <button 
+                            class="btn btn-outline-success"
+                            @click.prevent="checkTask(tasks, task)">
                             <font-awesome-icon icon="check" />
                         </button>
                     </div>
@@ -59,7 +61,9 @@ export default {
         getTasks() {
             axios.get('http://localhost:8000/tasks/index')
             .then((response) => {
-                this.tasks = response.data.tasks;        
+                this.tasks = response.data.tasks.filter(function(el) {
+                    return el.status != true;
+                });        
             })
             .catch((error) => {
                 console.log(error)
@@ -79,6 +83,22 @@ export default {
                     thisVue.response.status = true;
 
                     thisVue.getTasks();
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        },
+
+        checkTask(tasks,task) {
+            this.tasks = tasks.filter(function(el) {
+                return el.id != task.id
+            });
+
+            task.status = true;
+            
+            axios.put(`http://localhost:8000/tasks/update/${task.id}`, task)
+                .then((response) => {
+                    console.log(response);
                 })
                 .catch((error) => {
                     console.log(error);
