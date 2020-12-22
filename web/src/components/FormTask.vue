@@ -32,7 +32,14 @@
                     <div class="d-flex justify-content-between mb-3">
                         <button 
                             class="btn btn-success"
-                            @click.prevent="saveTask(task)">Confirmar</button>
+                            @click.prevent="saveTask(task)"
+                            v-if="!showButton">Confirmar</button>
+                        
+                        <button 
+                            class="btn btn-primary"
+                            @click.prevent="updateTask(task)"
+                            v-if="showButton">Atualizar</button>
+
                         <button 
                             class="btn btn-danger"
                             @click.prevent="cancelRegister()">Cancelar</button>
@@ -59,8 +66,20 @@ export default {
             response: {
                 message: String,
                 status: false
-            }
+            },
+            showButton: false
         }
+    },
+
+    created: function() {
+        const thisVue = this;
+
+        thisVue.showButton = false;
+
+        EventBus.$on('editTask', function(task) {
+            thisVue.task = task;
+            thisVue.showButton = true;
+        })
     },
 
     methods: {
@@ -77,8 +96,24 @@ export default {
                 })
         },
 
+        updateTask(task) {
+            const thisVue = this;
+            
+            axios.put(`http://localhost:8000/tasks/update/${task.id}`, task)
+                .then((response) => {
+                    thisVue.response.message = response.data.message;
+                    thisVue.response.status = true;
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        },
+
         cancelRegister() {
             EventBus.$emit('cancelRegister');
+            
+            this.showButton = false;
+            this.task = {};
         }
     }
 }
