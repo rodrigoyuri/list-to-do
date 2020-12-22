@@ -1,6 +1,7 @@
 <template>
     <div class="row d-flex justify-content-center">
         <div class="col-6">
+            <div class="alert alert-success" v-if="response.status">{{response.message}}</div>
             <div class="card mb-3"  v-for="(task, index) in tasks" :key="index">
                 <div class="card-header d-flex justify-content-end">
                     <div>
@@ -15,7 +16,9 @@
                     <p class="card-text">{{task.description}}</p>
                     <div class="d-flex justify-content-end">
                         <button class="btn btn-primary mr-3">Editar <font-awesome-icon icon="edit" /></button>
-                        <button class="btn btn-danger">Excluir <font-awesome-icon icon="trash" /></button>
+                        <button 
+                            class="btn btn-danger"
+                            @click.prevent="removeTask(task.id)">Excluir <font-awesome-icon icon="trash" /></button>
                     </div>
                 </div>
             </div>
@@ -31,24 +34,48 @@ export default {
         return {
             tasks: [
                 {
+                    id: Number,
                     name: String,
                     description: String,
                     status: Boolean,
                 }
-            ]
+            ],
+            response: {
+                message: String,
+                status: false
+            }
         }
     },
 
     created: function() {
-        const thisVue = this;
+        this.getTasks();
+    },
 
-        axios.get('http://localhost:8000/tasks/index')
+    methods: {
+        getTasks() {
+            axios.get('http://localhost:8000/tasks/index')
             .then((response) => {
-                thisVue.tasks = response.data.tasks;        
+                this.tasks = response.data.tasks;        
             })
             .catch((error) => {
                 console.log(error)
             })
+        },
+
+        removeTask(taskId) {
+            const thisVue = this;
+
+            axios.delete(`http://localhost:8000/tasks/delete/${taskId}`)
+                .then((response) => {
+                    thisVue.response.message = response.data.message;
+                    thisVue.response.status = true;
+
+                    thisVue.getTasks();
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        }
     }
 }
 </script>
