@@ -61,7 +61,7 @@ export default {
             task: {
                 name: '',
                 description: '',
-                status: false
+                status: 0
             },
             response: {
                 message: String,
@@ -88,8 +88,9 @@ export default {
 
             axios.post('http://127.0.0.1:8000/tasks/create', task)
                 .then((response) => {
-                    thisVue.response.message = response.data.message;
-                    thisVue.response.status = true;
+                    thisVue.alertMessage(response);
+
+                    thisVue.resetForm();
                 })
                 .catch((error) => {
                     console.log(error)
@@ -98,20 +99,29 @@ export default {
 
         updateTask(task) {
             const thisVue = this;
-            
+
             axios.put(`http://localhost:8000/tasks/update/${task.id}`, task)
-                .then((response) => {
-                    thisVue.response.message = response.data.message;
-                    thisVue.response.status = true;
+                .then(() => {
+                    thisVue.cancelRegister();
                 })
                 .catch((error) => {
                     console.log(error);
                 })
         },
 
+        alertMessage(response) {
+            this.response.message = response.data.message;
+            this.response.status = true;
+        },
+
         cancelRegister() {
             EventBus.$emit('cancelRegister');
+            this.response = {};
             
+            this.resetForm();
+        },
+
+        resetForm() {
             this.showButton = false;
             this.task = {};
         }
