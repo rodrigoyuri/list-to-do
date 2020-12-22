@@ -70,18 +70,18 @@ class TaskController extends AbstractController
 
         $doctrine = $this->getDoctrine();
 
-        $task = $doctrine->getRepository(Task::class)->find($data->task->id);
+        $task = $doctrine->getRepository(Task::class)->find($data->id);
 
-        if($data->task->name) {
-            $task->setName($data->task->name);
+        if($data->name) {
+            $task->setName($data->name);
         }
 
-        if($data->task->description) {
-            $task->setDescription($data->task->description);
+        if($data->description) {
+            $task->setDescription($data->description);
         }
 
-        if($data->task->status) {
-            $task->setStatus($data->task->status);
+        if($data->status) {
+            $task->setStatus($data->status);
         }
 
         $manager = $doctrine->getManager();
