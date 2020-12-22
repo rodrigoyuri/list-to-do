@@ -2,7 +2,7 @@
   <div id="app">
     <nav-bar></nav-bar>
     <card-task v-if="isVisible"></card-task>
-    <form-task v-if="!isVisible"></form-task>
+    <form-task v-show="!isVisible"></form-task>
   </div>
 </template>
 
@@ -34,7 +34,11 @@ export default {
     });
 
     EventBus.$on('cancelRegister', function() {
-      thisVue.isVisible = true
+      thisVue.isVisible = true;
+    })
+
+    EventBus.$on('editTask', function() {
+      thisVue.isVisible = false;
     })
 
   }
