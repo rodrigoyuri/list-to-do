@@ -9,7 +9,8 @@ import {
   faCheck, 
   faTasks,
   faList,
-  faUserCircle } from '@fortawesome/free-solid-svg-icons';
+  faUserCircle,
+  faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 import App from './App.vue'
@@ -29,7 +30,7 @@ Vue.config.productionTip = false;
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
 
-library.add(faPlus, faEdit, faTrash, faCheck, faTasks, faList, faUserCircle);
+library.add(faPlus, faEdit, faTrash, faCheck, faTasks, faList, faUserCircle, faTimes);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 new Vue({
