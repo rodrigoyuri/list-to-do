@@ -34,10 +34,12 @@
                         <div class="d-flex justify-content-end">
                             <button 
                                 class="btn btn-primary mr-3"
-                                @click.prevent="editTask(task)">Editar <font-awesome-icon icon="edit" /></button>
+                                @click.prevent="editTask(task)"
+                                >Editar <font-awesome-icon icon="edit" /></button>
                             <button 
                                 class="btn btn-danger"
-                                @click.prevent="removeTask(task.id)">Excluir <font-awesome-icon icon="trash" /></button>
+                                @click.prevent="removeTask(tasks, task.id)"
+                                >Excluir <font-awesome-icon icon="trash" /></button>
                         </div>
                     </div>
                 </div>
@@ -100,15 +102,12 @@ export default {
             EventBus.$emit('editTask', task);
         },
 
-        removeTask(taskId) {
-            const thisVue = this;
+        removeTask(tasks, taskId) { 
+            this.filterTasks(tasks, taskId);
 
             axios.delete(`http://localhost:8000/tasks/delete/${taskId}`)
                 .then((response) => {
-                    thisVue.response.message = response.data.message;
-                    thisVue.response.status = true;
-
-                    thisVue.getTasks();
+                    console.log(response)
                 })
                 .catch((error) => {
                     console.log(error);
@@ -116,9 +115,7 @@ export default {
         },
 
         checkTask(tasks,task) {
-            this.tasks = tasks.filter(function(el) {
-                return el.id != task.id
-            });
+            this.filterTasks(tasks, task.id);
 
             task.status = true;
             
@@ -129,6 +126,20 @@ export default {
                 .catch((error) => {
                     console.log(error);
                 })
+        },
+
+        filterTasks(tasks, conditional) {
+            if(typeof conditional === 'number') {
+                this.tasks = tasks.filter(function(el) {
+                    return el.id != conditional;
+                })
+            } else if(typeof conditional === 'boolean') {
+                this.tasks = tasks.filter(function(el) {
+                    return el.id != conditional;
+                })
+            }
+
+            return;
         }
     }
 }
