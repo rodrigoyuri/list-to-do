@@ -7,6 +7,7 @@
                 {{title.name}}
                 </a>
             </div>
+            <router-link to="/complete-task"></router-link>
         </nav>
         <div class="d-flex justify-content-end mr-3 mt-3">
             <button 

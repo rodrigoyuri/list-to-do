@@ -1,50 +1,40 @@
 <template>
   <div id="app">
     <nav-bar></nav-bar>
-    <card-task v-if="isVisible"></card-task>
-    <form-task v-show="!isVisible"></form-task>
+    <router-view/>
   </div>
 </template>
 
 <script>
-import NavBar from './components/NavBar';
-import CardTask from './components/CardTask';
-import FormTask from './components/FormTask';
-import EventBus from './event-bus';
+import NavBar from './components/NavBar.vue';
 
 export default {
-  name: 'App',
-  components: {
-    NavBar,
-    CardTask,
-    FormTask
-  },
-
-  data() {
-    return {
-      isVisible: true
-    }
-  },
-
-  created: function() {
-    const thisVue = this;
-    
-    EventBus.$on('showForm', function() {
-      thisVue.isVisible = false;
-    });
-
-    EventBus.$on('cancelRegister', function() {
-      thisVue.isVisible = true;
-    })
-
-    EventBus.$on('editTask', function() {
-      thisVue.isVisible = false;
-    })
-
-  }
+    name: 'App',
+    components: {
+      NavBar
+    } 
 }
 </script>
 
 <style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
 
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
+}
 </style>
