@@ -19,9 +19,7 @@
                         <font-awesome-icon icon="user-circle" size="2x"/>
                     </button>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <router-link to="/complete-task">Tarefas Concluidas</router-link>
                     </div>
                 </div>
 
