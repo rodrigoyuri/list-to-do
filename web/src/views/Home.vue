@@ -1,7 +1,15 @@
 <template>
   <div class="home">
-    <CardTask v-if="isVisible"/>
-    <FormTask v-if="!isVisible"/>
+    <card-task
+      title="Tarefas Restantes"
+      icon="check"
+      :headerCard="{
+        headerText: 'Marcar com concluida',
+        styleButton: 'success',
+      }"
+      v-if="isVisible"
+    />
+    <form-task v-if="!isVisible" />
   </div>
 </template>
 
@@ -11,6 +19,8 @@ import CardTask from '@/components/CardTask'
 import FormTask from '@/components/FormTask';
 import EventBus from '@/event-bus';
 
+
+
 export default {
   name: 'Home',
   components: {
@@ -18,7 +28,8 @@ export default {
     FormTask
   },
 
-  data() {
+  data()
+    {
     return {
       isVisible: true
     }
