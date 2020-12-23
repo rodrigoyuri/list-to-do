@@ -1,6 +1,7 @@
 <template>
     <div class="row d-flex justify-content-center" style="width: 100%">
         <div class="col-6">
+            <h2 class="d-flex justify-content-start mb-4">{{title}}</h2>
 
             <div 
                 class="alert alert-success" 
@@ -19,19 +20,20 @@
             <div v-if="!statusRequision">
                 <div class="card mb-3" v-for="(task, index) in tasks" :key="index">
                     <div class="card-header d-flex justify-content-end">
-                        <div>
-                            Marcar como concluida 
+                        <div class="row">
+                            <div class="d-flex align-items-center mr-3">{{headerCard.headerText}}</div> 
                             <button 
-                                class="btn btn-outline-success"
+                                :class="'btn btn-outline-'+ headerCard.styleButton"
                                 @click.prevent="checkTask(tasks, task)">
-                                <font-awesome-icon icon="check" />
+                                <font-awesome-icon v-bind:icon="icon" />
                             </button>
                         </div>
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">{{task.name}}</h5>
                         <p class="card-text">{{task.description}}</p>
-                        <div class="d-flex justify-content-end">
+
+                        <div v-if="showButtos" class="d-flex justify-content-end">
                             <button 
                                 class="btn btn-primary mr-3"
                                 @click.prevent="editTask(task)"
@@ -41,6 +43,7 @@
                                 @click.prevent="removeTask(tasks, task.id)"
                                 >Excluir <font-awesome-icon icon="trash" /></button>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -53,6 +56,36 @@ import axios from 'axios';
 import EventBus from '../event-bus';
 
 export default {
+    props: {
+        title: {
+            type: String,
+            default: ''
+        },
+        icon: {
+            type: String,
+            default: ''
+        },
+        check: {
+            type: String,
+            default: ''
+        },
+        headerCard:{
+            headerText: {
+                type: String,
+                default: ''
+            },
+            styleButton: {
+                type: String,
+                default: ''
+            }
+        },
+        showButtos: {
+            type: Boolean,
+            default: true
+        }
+        
+    },
+
     data() {
         return {
             tasks: [
