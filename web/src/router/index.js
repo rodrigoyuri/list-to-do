@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import CompleteTask from '../views/CompleteTask'
+import CreateTask from '../views/CreateTask'
 
 Vue.use(VueRouter)
 
@@ -15,6 +16,11 @@ const routes = [
     path: '/complete-task',
     name: 'CompleteTask',
     component: CompleteTask
+  },
+  {
+    path: '/register-task',
+    name: 'CreateTask',
+    component: CreateTask
   },
   {
     path: '/about',
