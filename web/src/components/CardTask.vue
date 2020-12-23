@@ -1,5 +1,5 @@
 <template>
-    <div class="row d-flex justify-content-center">
+    <div class="row d-flex justify-content-center" style="width: 100%">
         <div class="col-6">
 
             <div 
