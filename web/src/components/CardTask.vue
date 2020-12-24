@@ -29,7 +29,7 @@
                             </button>
                         </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body text-justify">
                         <h5 class="card-title">{{task.name}}</h5>
                         <p class="card-text">{{task.description}}</p>
 
