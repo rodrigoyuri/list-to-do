@@ -34,10 +34,16 @@
                         <p class="card-text">{{task.description}}</p>
 
                         <div v-if="showButtos" class="d-flex justify-content-end">
-                            <button 
-                                class="btn btn-primary mr-3"
-                                @click.prevent="editTask(task)"
-                                >Editar <font-awesome-icon icon="edit" /></button>
+                            
+                            <router-link :to="{name: 'EditTask', query:{task: task}}">
+                                <button 
+                                    class="btn btn-primary mr-3"
+                                >
+                                    Editar 
+                                    <font-awesome-icon icon="edit" />
+                                </button>
+                            </router-link>
+
                             <button 
                                 class="btn btn-danger"
                                 @click.prevent="removeTask(tasks, task.id)"
@@ -53,7 +59,6 @@
 
 <script>
 import axios from 'axios';
-import EventBus from '../event-bus';
 
 export default {
     props: {
@@ -129,10 +134,6 @@ export default {
             .catch((error) => {
                 console.log(error)
             })
-        },
-
-        editTask(task) {
-            EventBus.$emit('editTask', task);
         },
 
         removeTask(tasks, taskId) { 
