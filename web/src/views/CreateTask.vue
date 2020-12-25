@@ -1,6 +1,6 @@
 <template>
     <div class="create">
-        <form-task></form-task>
+        <form-task title="Cadastrar Tarefa"></form-task>
     </div>
 </template>
 
