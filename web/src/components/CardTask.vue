@@ -84,6 +84,10 @@ export default {
                 default: ''
             }
         },
+        showCards: {
+            type: Boolean,
+            default: true
+        },
         showButtos: {
             type: Boolean,
             default: true
@@ -123,7 +127,7 @@ export default {
             .then((response) => {
                 if(response.data) {
                     this.tasks = response.data.tasks.filter(function(el) {
-                        return el.status != true;
+                        return el.status != thisVue.showCards;
                     });
 
                     this.statusRequision = false;
