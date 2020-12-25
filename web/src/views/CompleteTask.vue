@@ -6,6 +6,7 @@
                 headerText: 'Removar tarefa',
                 styleButton: 'danger'
             }"
+            :showCards=false
             :showButtos=false
             icon="times"></card-task>
     </div>
