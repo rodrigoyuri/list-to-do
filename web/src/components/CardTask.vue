@@ -22,10 +22,17 @@
                     <div class="card-header d-flex justify-content-end">
                         <div class="row">
                             <div class="d-flex align-items-center mr-3">{{headerCard.headerText}}</div> 
-                            <button 
+                            <button
+                                v-if="headerCard.changeButton" 
                                 :class="'btn btn-outline-'+ headerCard.styleButton"
                                 @click.prevent="checkTask(tasks, task)">
-                                <font-awesome-icon v-bind:icon="icon" />
+                                <font-awesome-icon :icon="icon" />
+                            </button>
+                            <button
+                                v-if="!headerCard.changeButton" 
+                                :class="'btn btn-outline-'+ headerCard.styleButton"
+                                @click.prevent="removeTask(tasks, task.id)">
+                                <font-awesome-icon :icon="icon" />
                             </button>
                         </div>
                     </div>
@@ -82,6 +89,10 @@ export default {
             styleButton: {
                 type: String,
                 default: ''
+            },
+            changeButton: {
+                type: Boolean,
+                default: true
             }
         },
         showCards: {
