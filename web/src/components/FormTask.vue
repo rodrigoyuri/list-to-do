@@ -2,10 +2,10 @@
     <div>
         <div class="row mt-3 d-flex justify-content-center">
             <div class="col-4 border rounded">
+                <h2>{{title}}</h2>
                 <div 
                     class="alert alert-success mt-3"
                     v-if="response.status">{{response.message}}</div>
-                <h3 class="mt-3">Cadastre suas Tarefa</h3>
                 <form enctype="multipart/form-data">
                     <div class="mb-3">
                         <label 
@@ -52,17 +52,26 @@
 </template>
 
 <script>
-import EventBus from '../event-bus';
 import axios from 'axios';
 
 export default {
+    props: {
+        title: {
+            type: String,
+            default: ''
+        },
+        taskEdit: {
+            type: Object,
+        },
+    },
+
     data() {
         return {
-            task: {
+          task: {
                 name: '',
                 description: '',
                 status: false
-            },
+            },  
             response: {
                 message: String,
                 status: false
@@ -72,14 +81,10 @@ export default {
     },
 
     created: function() {
-        const thisVue = this;
-
-        thisVue.showButton = false;
-
-        EventBus.$on('editTask', function(task) {
-            thisVue.task = task;
-            thisVue.showButton = true;
-        })
+        if(this.$route.query.task) {
+            this.task = this.$route.query.task
+        }
+        
     },
 
     methods: {
@@ -115,7 +120,7 @@ export default {
         },
 
         cancelRegister() {
-         window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/');
+            window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/');
         },
 
         resetForm() {
