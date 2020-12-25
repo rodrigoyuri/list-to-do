@@ -8,6 +8,7 @@
             }"
             :showCards=false
             :showButtos=false
+            :changeButton=false
             icon="times"></card-task>
     </div>
 </template>
