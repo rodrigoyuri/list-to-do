@@ -35,7 +35,7 @@
 
                         <div v-if="showButtos" class="d-flex justify-content-end">
                             
-                            <router-link :to="{name: 'EditTask', query:{task: task}}">
+                            <router-link :to="{name: 'EditTask', query:{task: task, showButton: true}}">
                                 <button 
                                     class="btn btn-primary mr-3"
                                 >
