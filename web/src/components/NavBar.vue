@@ -19,7 +19,7 @@
                         <font-awesome-icon icon="user-circle" size="2x"/>
                     </button>
                     <div class="dropdown-menu">
-                        <router-link to="/complete-task">Tarefas Concluidas</router-link>
+                        <router-link to="/complete-task" class="dropdown-item">Tarefas Concluidas</router-link>
                     </div>
                 </div>
 
