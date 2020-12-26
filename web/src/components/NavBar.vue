@@ -9,16 +9,17 @@
                     </button>
                 </router-link>
 
-                <div class="dropleft">
+                <div class="btn-group dropleft">
                     <button 
                         type="button" 
                         class="btn mr-3"
+                        id="menuDropDown"
                         data-toggle="dropdown" 
                         aria-haspopup="true" 
                         aria-expanded="false">
                         <font-awesome-icon icon="user-circle" size="2x"/>
                     </button>
-                    <div class="dropdown-menu">
+                    <div class="dropdown-menu" aria-labelledby="menuDropDown">
                         <router-link to="/complete-task" class="dropdown-item">Tarefas Concluidas</router-link>
                     </div>
                 </div>
@@ -33,3 +34,9 @@
 export default {
 }
 </script>
+
+<style>
+    .btn:focus {
+        box-shadow: none !important;
+    }   
+</style>
