@@ -84,8 +84,7 @@ export default {
         if(this.$route.query.task) {
             this.task = this.$route.query.task;
             this.showButton = this.$route.query.showButton;
-        }
-        
+        }        
     },
 
     methods: {
