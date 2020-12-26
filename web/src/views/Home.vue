@@ -13,6 +13,7 @@
       :headerCard="{
         headerText: 'Marcar com concluida',
         styleButton: 'success',
+        changeButton: true
       }"
       v-if="isVisible"
     />

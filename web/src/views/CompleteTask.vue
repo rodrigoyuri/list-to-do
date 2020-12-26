@@ -4,11 +4,11 @@
             title="Tarefas Concluidas" 
             :headerCard="{
                 headerText: 'Removar tarefa',
-                styleButton: 'danger'
+                styleButton: 'danger',
+                changeButton: false
             }"
             :showCards=false
             :showButtos=false
-            :changeButton=false
             icon="times"></card-task>
     </div>
 </template>
