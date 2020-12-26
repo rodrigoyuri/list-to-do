@@ -19,18 +19,18 @@
 
             <div v-if="!statusRequision">
                 <div class="card mb-3" v-for="(task, index) in tasks" :key="index">
-                    <div class="card-header d-flex justify-content-end">
+                    <div class="card-header d-flex justify-content-end text-white bg-dark">
                         <div class="row">
                             <div class="d-flex align-items-center mr-3">{{headerCard.headerText}}</div> 
                             <button
                                 v-if="headerCard.changeButton" 
-                                :class="'btn btn-outline-'+ headerCard.styleButton"
+                                :class="'btn btn-outline-'+ headerCard.styleButton + ' mr-3'"
                                 @click.prevent="checkTask(tasks, task)">
                                 <font-awesome-icon :icon="icon" />
                             </button>
                             <button
                                 v-if="!headerCard.changeButton" 
-                                :class="'btn btn-outline-'+ headerCard.styleButton"
+                                :class="'btn btn-outline-'+ headerCard.styleButton + ' mr-3'"
                                 @click.prevent="removeTask(tasks, task.id)">
                                 <font-awesome-icon :icon="icon" />
                             </button>
