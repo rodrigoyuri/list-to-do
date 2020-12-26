@@ -21,7 +21,7 @@
                 <div class="card mb-3" v-for="(task, index) in tasks" :key="index">
                     <div class="card-header d-flex justify-content-end text-white bg-dark">
                         <div class="row">
-                            <div class="d-flex align-items-center mr-3">{{headerCard.headerText}}</div> 
+                            <div class="d-flex align-items-center font-weight-bold mr-3">{{headerCard.headerText}}</div> 
                             <button
                                 v-if="headerCard.changeButton" 
                                 :class="'btn btn-outline-'+ headerCard.styleButton + ' mr-3'"
@@ -44,7 +44,7 @@
                             
                             <router-link :to="{name: 'EditTask', query:{task: task, showButton: true}}">
                                 <button 
-                                    class="btn btn-primary mr-3"
+                                    class="btn btn-primary font-weight-bold mr-3"
                                 >
                                     Editar 
                                     <font-awesome-icon icon="edit" />
@@ -52,7 +52,7 @@
                             </router-link>
 
                             <button 
-                                class="btn btn-danger"
+                                class="btn btn-danger font-weight-bold"
                                 @click.prevent="removeTask(tasks, task.id)"
                                 >Excluir <font-awesome-icon icon="trash" /></button>
                         </div>

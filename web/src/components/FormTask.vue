@@ -31,17 +31,17 @@
 
                     <div class="d-flex justify-content-between mb-3">
                         <button 
-                            class="btn btn-success"
+                            class="btn btn-success font-weight-bold"
                             @click.prevent="saveTask(task)"
                             v-if="!showButton">Confirmar</button>
                         
                         <button 
-                            class="btn btn-primary"
+                            class="btn btn-primary font-weight-bold"
                             @click.prevent="updateTask(task)"
                             v-if="showButton">Atualizar</button>
 
                         <button 
-                            class="btn btn-danger"
+                            class="btn btn-danger font-weight-bold"
                             @click.prevent="cancelRegister()">Cancelar</button>
                     </div>
                 </form>
