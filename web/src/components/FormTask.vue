@@ -6,7 +6,7 @@
                 <div 
                     class="alert alert-success mt-3"
                     v-if="response.status">{{response.message}}</div>
-                <form enctype="multipart/form-data">
+                <form enctype="multipart/form-data" class="text-left">
                     <div class="mb-3">
                         <label 
                             for="name" 
