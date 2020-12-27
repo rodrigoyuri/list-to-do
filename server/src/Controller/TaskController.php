@@ -105,4 +105,16 @@ class TaskController extends AbstractController
 
         return $this->json(['message' => 'Tarefa Removida com Sucesso!']);
     }
+
+    /**
+     * @Route("/delete-all/{id}", name="deleteAllTask", methods={"DELETE"})
+     */
+    public function deleteAllTaskById($id)
+    {
+        $doctrine = $this->getDoctrine();
+
+        $task = $doctrine->getRepository(Task::class)->deleteAllById($id);
+
+        return $this->json(['message' => 'Tarefas removidas com Sucesso!']);
+    }
 }
