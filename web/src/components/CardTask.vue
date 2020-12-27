@@ -168,8 +168,20 @@ export default {
                 })
         },
 
-        removeAllTasks(tasksId) {
-            console.log(tasksId);
+        removeAllTasks(tasks) {
+            let tasksId = tasks.map(function(el) {
+                return el.id;
+            });
+            
+            this.tasks = {};
+            
+            axios.delete(`http://localhost:8000/tasks/delete-all/${tasksId}`)
+                .then((response) => {
+                    console.log(response);
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
         },
 
         checkTask(tasks,task) {
