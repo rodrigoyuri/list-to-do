@@ -1,8 +1,13 @@
 <template>
     <div class="row d-flex justify-content-center" style="width: 100%">
         <div class="col-6">
-            <h2 class="d-flex justify-content-start mb-4">{{title}}</h2>
-
+            <h2 class="d-flex justify-content-start mb-4 mt-3">{{title}}</h2>
+            <div class="d-flex justify-content-end mb-3">
+                <button
+                    v-if="!headerCard.changeButton" 
+                    class="btn btn-danger text-bold"
+                    @click.prevent="removeAllTasks(tasks)">REMOVER TODAS</button>
+            </div>
             <div 
                 class="alert alert-success" 
                 v-if="response.status">{{response.message}}</div>
@@ -161,6 +166,10 @@ export default {
                 .catch((error) => {
                     console.log(error);
                 })
+        },
+
+        removeAllTasks(tasksId) {
+            console.log(tasksId);
         },
 
         checkTask(tasks,task) {
