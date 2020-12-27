@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Task;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\Expr;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -47,4 +48,17 @@ class TaskRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function deleteAllById($id)
+    {
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+
+        return $qb->delete()
+            ->from('App\Entity\Task', 't')
+            ->where('t.id IN (:id)')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
+    }
 }
