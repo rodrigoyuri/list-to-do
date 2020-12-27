@@ -6,7 +6,8 @@
                 <button
                     v-if="!headerCard.changeButton" 
                     class="btn btn-danger text-bold"
-                    @click.prevent="removeAllTasks(tasks)">REMOVER TODAS</button>
+                    @click.prevent="removeAllTasks(tasks)"
+                    :disabled="isDisabled">REMOVER TODAS</button>
             </div>
             <div 
                 class="alert alert-success" 
@@ -126,6 +127,13 @@ export default {
                 status: false
             },
             statusRequision: false,
+            disableButton: false
+        }
+    },
+
+    computed: {
+        isDisabled: function() {
+            return this.tasks.length > 0 ? false : true
         }
     },
 
@@ -172,7 +180,7 @@ export default {
             let tasksId = tasks.map(function(el) {
                 return el.id;
             });
-            
+
             this.tasks = {};
             
             axios.delete(`http://localhost:8000/tasks/delete-all/${tasksId}`)
