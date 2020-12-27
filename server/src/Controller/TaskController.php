@@ -112,8 +112,11 @@ class TaskController extends AbstractController
     public function deleteAllTaskById($id)
     {
         $doctrine = $this->getDoctrine();
+        $ids = explode(',', $id);
 
-        $task = $doctrine->getRepository(Task::class)->deleteAllById($id);
+        // return $this->json(['ids' => $ids]);
+
+        $task = $doctrine->getRepository(Task::class)->deleteAllById($ids);
 
         return $this->json(['message' => 'Tarefas removidas com Sucesso!']);
     }
