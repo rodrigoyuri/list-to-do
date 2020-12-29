@@ -9,11 +9,9 @@
       </div>
     <card-task
       title="Tarefas Restantes"
-      icon="check"
       :headerCard="{
-        headerText: 'Marcar com concluida',
-        styleButton: 'success',
-        changeButton: true
+        headerText: ['Marcar com concluida'],
+        showRemove: false
       }"
       v-if="isVisible"
     />
