@@ -6,8 +6,9 @@
                 headerText: ['Desmarcar como concluida', 'Remover Tarefa'],
                 showRemove: true
             }"
-            :showCards=false
-            :showButtos=false></card-task>
+            :showCards="false"
+            :showButtos="false"
+            :statusTask="false"></card-task>
     </div>
 </template>
 

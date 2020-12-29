@@ -15,7 +15,8 @@
         headerText: ['Marcar com concluida'],
         showRemove: false
       }"
-    />
+      :statusTask1="true"
+    ></card-task>
 
   </div>
 </template>
