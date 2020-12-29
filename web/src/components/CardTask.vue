@@ -1,7 +1,9 @@
 <template>
     <div class="row d-flex justify-content-center" style="width: 100%">
         <div class="col-6">
+
             <h2 class="d-flex justify-content-start mb-4 mt-3">{{title}}</h2>
+            
             <div class="d-flex justify-content-end mb-3">
                 <button
                     v-if="headerCard.showRemove" 
@@ -9,12 +11,8 @@
                     @click.prevent="removeAllTasks(tasks)"
                     :disabled="isDisabled">REMOVER TODAS</button>
             </div>
-            <!-- <div 
-                class="alert alert-success" 
-                v-if="response.status">{{response.message}}</div> -->
-            <div 
-                class="alert alert-warning" 
-                v-if="!tasks.length">Nenhum Tarefa Encontrada.</div>
+
+            <div class="alert alert-warning" v-if="!tasks.length">Nenhum Tarefa Encontrada.</div>
             
             <div v-if="statusRequision">
                 <div class="d-flex align-items-center">
@@ -24,7 +22,9 @@
             </div>
 
             <div v-if="!statusRequision">
+
                 <div class="card mb-3" v-for="(task, index) in tasks" :key="index">
+                    
                     <div class="card-header d-flex justify-content-end text-white bg-dark">
                         <div class="row">
                             <div class="d-flex align-items-center font-weight-bold mr-3">{{headerCard.headerText[0]}}</div> 
@@ -42,7 +42,9 @@
                             </button>
                         </div>
                     </div>
+
                     <div class="card-body text-justify">
+
                         <h5 class="card-title">{{task.name}}</h5>
                         <p class="card-text">{{task.description}}</p>
 
@@ -64,8 +66,10 @@
                         </div>
 
                     </div>
+
                 </div>
             </div>
+
         </div>
     </div>
 </template>
@@ -76,10 +80,6 @@ import axios from 'axios';
 export default {
     props: {
         title: {
-            type: String,
-            default: ''
-        },
-        check: {
             type: String,
             default: ''
         },
@@ -114,12 +114,7 @@ export default {
                     status: Boolean,
                 }
             ],
-            response: {
-                message: String,
-                status: false
-            },
             statusRequision: false,
-            disableButton: false
         }
     },
 
@@ -199,11 +194,8 @@ export default {
         },
 
         filterTasks(tasks, conditional) {
+            
             if(typeof conditional === 'number') {
-                this.tasks = tasks.filter(function(el) {
-                    return el.id != conditional;
-                })
-            } else if(typeof conditional === 'boolean') {
                 this.tasks = tasks.filter(function(el) {
                     return el.id != conditional;
                 })
