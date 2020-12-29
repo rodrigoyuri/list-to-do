@@ -4,14 +4,14 @@
             <h2 class="d-flex justify-content-start mb-4 mt-3">{{title}}</h2>
             <div class="d-flex justify-content-end mb-3">
                 <button
-                    v-if="!headerCard.changeButton" 
+                    v-if="headerCard.showRemove" 
                     class="btn btn-danger text-bold"
                     @click.prevent="removeAllTasks(tasks)"
                     :disabled="isDisabled">REMOVER TODAS</button>
             </div>
-            <div 
+            <!-- <div 
                 class="alert alert-success" 
-                v-if="response.status">{{response.message}}</div>
+                v-if="response.status">{{response.message}}</div> -->
             <div 
                 class="alert alert-warning" 
                 v-if="!tasks.length">Nenhum Tarefa Encontrada.</div>
@@ -27,18 +27,18 @@
                 <div class="card mb-3" v-for="(task, index) in tasks" :key="index">
                     <div class="card-header d-flex justify-content-end text-white bg-dark">
                         <div class="row">
-                            <div class="d-flex align-items-center font-weight-bold mr-3">{{headerCard.headerText}}</div> 
-                            <button
-                                v-if="headerCard.changeButton" 
-                                :class="'btn btn-outline-'+ headerCard.styleButton + ' mr-3'"
+                            <div class="d-flex align-items-center font-weight-bold mr-3">{{headerCard.headerText[0]}}</div> 
+                            <button 
+                                class="btn btn-outline-success mr-3"
                                 @click.prevent="checkTask(tasks, task)">
-                                <font-awesome-icon :icon="icon" />
+                                <font-awesome-icon icon="check" />
                             </button>
+                            <div v-if="headerCard.showRemove" class="d-flex align-items-center font-weight-bold mr-3">{{headerCard.headerText[1]}}</div>
                             <button
-                                v-if="!headerCard.changeButton" 
-                                :class="'btn btn-outline-'+ headerCard.styleButton + ' mr-3'"
+                                v-if="headerCard.showRemove" 
+                                class="btn btn-outline-danger mr-3"
                                 @click.prevent="removeTask(tasks, task.id)">
-                                <font-awesome-icon :icon="icon" />
+                                <font-awesome-icon icon="times" />
                             </button>
                         </div>
                     </div>
@@ -79,24 +79,16 @@ export default {
             type: String,
             default: ''
         },
-        icon: {
-            type: String,
-            default: ''
-        },
         check: {
             type: String,
             default: ''
         },
         headerCard:{
             headerText: {
-                type: String,
-                default: ''
+                type: Array,
+                default: []
             },
-            styleButton: {
-                type: String,
-                default: ''
-            },
-            changeButton: {
+            showRemove: {
                 type: Boolean,
                 default: true
             }
