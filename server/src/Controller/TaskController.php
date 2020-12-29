@@ -70,7 +70,7 @@ class TaskController extends AbstractController
 
         $doctrine = $this->getDoctrine();
 
-        $task = $doctrine->getRepository(Task::class)->find($data->id);
+        $task = $doctrine->getRepository(Task::class)->find($id);
 
         if($data->name) {
             $task->setName($data->name);
@@ -80,9 +80,7 @@ class TaskController extends AbstractController
             $task->setDescription($data->description);
         }
 
-        if($data->status) {
-            $task->setStatus($data->status);
-        }
+        $task->setStatus($data->status);
 
         $manager = $doctrine->getManager();
         $manager->flush();
