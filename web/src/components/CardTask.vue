@@ -22,7 +22,7 @@
             </div>
 
             <div v-if="!statusRequision">
-
+                
                 <div class="card mb-3" v-for="(task, index) in tasks" :key="index">
                     
                     <div class="card-header d-flex justify-content-end text-white bg-dark">
@@ -30,7 +30,7 @@
                             <div class="d-flex align-items-center font-weight-bold mr-3">{{headerCard.headerText[0]}}</div> 
                             <button 
                                 class="btn btn-outline-success mr-3"
-                                @click.prevent="checkTask(tasks, task)">
+                                @click.prevent="checkTask(tasks, task, statusTask)">
                                 <font-awesome-icon icon="check" />
                             </button>
                             <div v-if="headerCard.showRemove" class="d-flex align-items-center font-weight-bold mr-3">{{headerCard.headerText[1]}}</div>
@@ -98,6 +98,10 @@ export default {
             default: true
         },
         showButtos: {
+            type: Boolean,
+            default: true
+        },
+        statusTask: {
             type: Boolean,
             default: true
         }
@@ -179,10 +183,10 @@ export default {
                 })
         },
 
-        checkTask(tasks,task) {
+        checkTask(tasks,task, statusTask) {
             this.filterTasks(tasks, task.id);
 
-            task.status = true;
+            task.status = statusTask;
             
             axios.put(`http://localhost:8000/tasks/update/${task.id}`, task)
                 .then((response) => {
