@@ -3,13 +3,11 @@
         <card-task 
             title="Tarefas Concluidas" 
             :headerCard="{
-                headerText: 'Removar tarefa',
-                styleButton: 'danger',
-                changeButton: false
+                headerText: ['Desmarcar como concluida', 'Remover Tarefa'],
+                showRemove: true
             }"
             :showCards=false
-            :showButtos=false
-            icon="times"></card-task>
+            :showButtos=false></card-task>
     </div>
 </template>
 
