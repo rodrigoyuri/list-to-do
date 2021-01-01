@@ -3,7 +3,7 @@
 <center>
 
 <!-- ![Imagem de capa](https://github.com/seu_user/pasta/imagem.pgn) -->
-![Imagem de capa](./assets/home.png)
+![Imagem de capa](./assets/home-with-task.png)
 
 </center>
 
@@ -12,14 +12,9 @@
 <!-- [Demo do Projeto](https://link.para.demo.caso.houver) -->
 
 <!-- Descrição do **projeto**. Geralmente respondendo as perguntas: -->
+O motivo pela criação do projeto foi o desejo de aprender a trabalhar com novas tecnologias sendo elas Symfony(Framework PHP) e Vue.js.
 
-1 - Qual o motivo, problema, solução ou curso inspirou a criação do projeto?
-
-- O motivo pela criação do projeto foi o desejo de aprender novas ferramentas sendo elas Symfony(Framework PHP) e Vue.js.
-
-2 - Qual ou quais são as principais funções do projeto
-
-- O projeto conta com as funcionalidades comuns de um App de lista de Tarefas, sendo ela:
+O projeto conta com as funcionalidades comuns de um App de lista de Tarefas, sendo ela:
 
    - Cadastrar uma Tarefa.
 
@@ -41,6 +36,10 @@
 <!-- ![Web 1](https://github.com/seu_user/pasta/mobile1.png)
 
 ![Web 2](https://github.com/seu_user/pasta/mobile2.png) -->
+
+![Register Task](./assets/home.png)
+
+#
 
 ![Register Task](./assets/register.png)
 
@@ -92,7 +91,7 @@ Pré-requisitos: PHP 7.4+ e Symfony
 ```bash
 
 # entrar na pasta do projeto back end
-cd seu_repositorio/serve
+cd list-to-do/serve
 
 # executar o projeto
 symfony serve
@@ -110,7 +109,7 @@ Pré-requisitos: Node, npm ou yarn
 
 ```bash
 # entrar na pasta do projeto front end web
-cd seu_repositorio/web
+cd list-to-do/web
 
 # instalar dependências
 yarn install
@@ -125,12 +124,8 @@ npm serve
 
 # Autor(es)
 
-**Nome do Autor**
+**Rodrigo Yuri Veloso**
 
-https://www.linkedin.com/in/autor
-github.com/autor/
+Linkedin: https://www.linkedin.com/in/rodrigo-yuri/
 
-**Nome do Autor2**
-
-https://www.linkedin.com/in/autor2
-github.com/autor2/
+E-mail: rodrigo_yuri@hotmail.com
